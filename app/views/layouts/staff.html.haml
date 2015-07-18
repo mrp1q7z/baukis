@@ -1,0 +1,15 @@
+!!! 5
+%html
+  %head
+    %title
+      = document_title
+    = stylesheet_link_tag    'staff', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    #wrapper
+      = render 'staff/shared/header'
+      #container
+        = yield
+      = render 'shared/footer'
