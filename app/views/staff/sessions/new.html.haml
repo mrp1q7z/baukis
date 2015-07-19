@@ -3,6 +3,9 @@
 #login-form
   %h1= @title
 
+  - flash.each do |key, value|
+    = content_tag(:div, value, class: "#{key}")
+
   = form_for @form, url: :staff_session do |f|
     %div
       = f.label :email, 'メールアドレス'
