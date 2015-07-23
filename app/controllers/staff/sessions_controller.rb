@@ -4,7 +4,6 @@ class Staff::SessionsController < Staff::Base
       redirect_to :staff_root
     else
       @form = Staff::LoginForm.new
-      flash[:errors] = nil
       render action: 'new'
     end
   end
