@@ -18,4 +18,9 @@ class StaffMember < ActiveRecord::Base
   def full_name_kana
     self.family_name_kana + " " + self.given_name_kana
   end
+
+  def active?
+    !suspended? && start_date <= Date.today &&
+        (end_date.nil? || end_date > Date.today)
+  end
 end
