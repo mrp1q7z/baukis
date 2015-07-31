@@ -10,4 +10,11 @@ FactoryGirl.define do
     end_date nil
     suspended false
   end
+
+  factory :administrator do
+    email 'hanako@example.com'
+    email_for_index 'hanako@example.com'
+    password 'foobar'
+    suspended false
+  end
 end
