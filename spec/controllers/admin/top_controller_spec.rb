@@ -10,6 +10,18 @@ describe Admin::TopController do
     end
 
     describe '#index' do
+      example '通常はadmin/top/dashboardを表示' do
+        get :index
+        expect(response).to render_template('admin/top/dashboard')
+      end
+
+      example '停止フラグがセットされたら強制的にログアウト' do
+        admin_member.update_column(:suspended, true)
+        get :index
+        expect(session[:administrator_id]).to be_nil
+        expect(response).to redirect_to(admin_root_url)
+      end
+
       example 'セッションタイムアウト' do
         session[:last_access_time] = Admin::Base::TIMEOUT.ago.advance(seconds: -1)
         get :index
