@@ -1,12 +1,24 @@
 require 'rails_helper'
 
 describe Staff::AccountsController do
+  context 'ログイン前' do
+    #it_behaves_like 'a protected singular staff controller'
+    describe '#show' do
+      example 'ログインフォームにリダイレクト' do
+        get :show
+        expect(response).to redirect_to(staff_login_url)
+      end
+    end
+  end
+end
+
+describe Staff::AccountsController do
   describe '#update' do
     let(:params_hash) { attributes_for(:staff_member) }
     let(:staff_member) { create(:staff_member) }
     before do
       session[:staff_member_id] = staff_member.id
-      session[:last_access_time] = Date.today
+      session[:last_access_time] = 1.second.ago
     end
 
     example "email属性を変更する" do

@@ -1,5 +1,26 @@
 require 'rails_helper'
 
+def it_behaves_like(*args) ; end
+
+describe Admin::StaffMembersController do
+  context 'ログイン前' do
+    #it_behaves_like 'a protected admin controller'
+    describe '#index' do
+      example 'ログインフォームにリダイレクト' do
+        get :index
+        expect(response).to redirect_to(admin_login_url)
+      end
+    end
+
+    describe '#show' do
+      example 'ログインフォームにリダイレクト' do
+        get :show, id: 1
+        expect(response).to redirect_to(admin_login_url)
+      end
+    end
+  end
+end
+
 describe Admin::StaffMembersController do
   let(:params_hash) { attributes_for(:staff_member) }
   let(:administrator) { create(:administrator) }
