@@ -47,6 +47,7 @@ gem 'nokogiri'
 gem 'rails-i18n'
 gem 'haml-rails'
 gem 'foreigner'
+gem 'kaminari'
 group :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
