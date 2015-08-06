@@ -5,6 +5,8 @@
   .links
     = link_to '新規登録', :new_admin_staff_member
 
+  = paginate @staff_members
+
   %table.listing
     %tr
       %td 氏名
@@ -26,6 +28,8 @@
           = link_to '編集', [ :edit, :admin, m ]
           = link_to '削除', [ :admin, m ], method: :delete, data: { confirm: '本当に削除しますか？' }
           = link_to 'Events', [ :admin, m, :staff_events ]
+
+  = paginate @staff_members
 
   .links
     = link_to '新規作成', :new_admin_staff_member
