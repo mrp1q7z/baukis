@@ -4,6 +4,7 @@
 .table-wrapper
   .links
     = link_to 'アカウント情報編集', :edit_staff_account
+    = link_to 'パスワード変更', :edit_staff_password
 
   %table.attributes
     %tr
@@ -20,6 +21,9 @@
       %th メールアドレス
       %td.email
         = @staff_member.email
+    %tr
+      %th パスワード
+      %td.password ******
     %tr
       %th 開始日
       %td.date
