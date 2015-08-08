@@ -64,5 +64,15 @@ describe StaffMember do
       member2 = build(:staff_member, email: member1.email)
       expect(member2).not_to be_valid
     end
+
+    example 'family_nameには漢字、ひらがな、カタカナ、アルファベッド以外の文字は無効' do
+      member = build(:staff_member, family_name: '＠')
+      expect(member).not_to be_valid
+    end
+
+    example 'given_nameには漢字、ひらがな、カタカナ、アルファベッド以外の文字は無効' do
+      member = build(:staff_member, given_name: '￥')
+      expect(member).not_to be_valid
+    end
   end
 end
