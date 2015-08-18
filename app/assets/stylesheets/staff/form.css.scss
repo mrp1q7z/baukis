@@ -30,6 +30,11 @@ div#wrapper {
             display: inline-block;
           }
         }
+        div.input-block {
+          input {
+            margin-right: $narrow * 2;
+          }
+        }
         div.notes {
           text-align: right;
           font-size: $small;
@@ -44,7 +49,7 @@ div#wrapper {
           }
         }
         div.field_with_errors {
-          dislay: inline;
+          display: inline;
           padding: 0;
           label { color: $red; }
           input { background-color: $pink; }
