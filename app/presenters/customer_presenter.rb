@@ -5,7 +5,7 @@ class CustomerPresenter < ModelPresenter
     object.family_name + ' ' + object.given_name
   end
 
-  def full_namek_kana
+  def full_name_kana
     object.family_name_kana + ' ' + object.given_name_kana
   end
 
@@ -23,5 +23,13 @@ class CustomerPresenter < ModelPresenter
       else
         ''
     end
+  end
+
+  def created_at
+    object.created_at.try(:strftime, '%Y/%m/%d %H:%M:%S')
+  end
+
+  def updated_at
+    object.updated_at.try(:strftime, '%Y/%m/%d %H:%M:%S')
   end
 end
