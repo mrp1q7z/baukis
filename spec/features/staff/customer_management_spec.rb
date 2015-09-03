@@ -74,7 +74,7 @@ feature '職員による顧客管理' do
     # Whenセクション（シナリオの本体）
     fill_in 'メールアドレス', with: 'test@example.jp'
     within('fieldset#home-address-fields') do
-      fill_in '郵便番号', with: '999999'
+      fill_in '郵便番号', with: '9999999'
     end
     within('fieldset#work-address-fields') do
       fill_in '会社名', with: 'テスト'
@@ -84,7 +84,7 @@ feature '職員による顧客管理' do
     # Thenセクション（シナリオの結果）
     customer.reload
     expect(customer.email).to eq('test@example.jp')
-    expect(customer.home_address.postal_code).to eq('999999')
+    expect(customer.home_address.postal_code).to eq('9999999')
     expect(customer.work_address.company_name).to eq('テスト')
   end
 end
