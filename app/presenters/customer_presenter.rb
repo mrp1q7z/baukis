@@ -25,6 +25,10 @@ class CustomerPresenter < ModelPresenter
     end
   end
 
+  def personal_phones
+    object.personal_phones.map(&:number)
+  end
+
   def created_at
     object.created_at.try(:strftime, '%Y/%m/%d %H:%M:%S')
   end
