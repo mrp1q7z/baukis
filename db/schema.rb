@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906102038) do
+ActiveRecord::Schema.define(version: 20150910193209) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "customer_id",                null: false
@@ -27,8 +27,12 @@ ActiveRecord::Schema.define(version: 20150906102038) do
     t.datetime "updated_at",                 null: false
   end
 
+  add_index "addresses", ["city"], name: "index_addresses_on_city"
   add_index "addresses", ["customer_id"], name: "index_addresses_on_customer_id"
+  add_index "addresses", ["prefecture", "city"], name: "index_addresses_on_prefecture_and_city"
+  add_index "addresses", ["type", "city"], name: "index_addresses_on_type_and_city"
   add_index "addresses", ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true
+  add_index "addresses", ["type", "prefecture", "city"], name: "index_addresses_on_type_and_prefecture_and_city"
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                           null: false
@@ -53,10 +57,22 @@ ActiveRecord::Schema.define(version: 20150906102038) do
     t.string   "hashed_password"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "birth_year"
+    t.integer  "birth_month"
+    t.integer  "birth_mday"
   end
 
+  add_index "customers", ["birth_mday", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_mday_and_furigana"
+  add_index "customers", ["birth_mday", "given_name_kana"], name: "index_customers_on_birth_mday_and_given_name_kana"
+  add_index "customers", ["birth_month", "birth_mday"], name: "index_customers_on_birth_month_and_birth_mday"
+  add_index "customers", ["birth_month", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_month_and_furigana"
+  add_index "customers", ["birth_month", "given_name_kana"], name: "index_customers_on_birth_month_and_given_name_kana"
+  add_index "customers", ["birth_year", "birth_month", "birth_mday"], name: "index_customers_on_birth_year_and_birth_month_and_birth_mday"
+  add_index "customers", ["birth_year", "family_name_kana", "given_name_kana"], name: "index_customers_on_birth_year_and furigana"
+  add_index "customers", ["birth_year", "given_name_kana"], name: "index_customers_on_birth_year_and_given_name_kana"
   add_index "customers", ["email_for_index"], name: "index_customers_on_email_for_index", unique: true
   add_index "customers", ["family_name_kana", "given_name_kana"], name: "index_customers_on_family_name_kana_and_given_name_kana"
+  add_index "customers", ["given_name_kana"], name: "index_customers_on_given_name_kana"
 
   create_table "phones", force: :cascade do |t|
     t.integer  "customer_id",                      null: false
