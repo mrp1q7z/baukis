@@ -25,9 +25,15 @@ $(document).on 'page:change', ->
 
 toggle_home_address_fields = ->
   checked = $('input#form_inputs_home_address').prop('checked')
-  $('fieldset#home-address-fields input').prop('disabled', !checked)
-  $('fieldset#home-address-fields select').prop('disabled', !checked)
+  $('fieldset#home-address-fields').toggle(checked)
+  if checked
+    $('fieldset#home-address-fields input[required]:visible').prop('required', 'required');
+  else
+    $('fieldset#home-address-fields :input[required]').prop('required',null);
 toggle_work_address_fields = ->
   checked = $('input#form_inputs_work_address').prop('checked')
-  $('fieldset#work-address-fields input').prop('disabled', !checked)
-  $('fieldset#work-address-fields select').prop('disabled', !checked)
+  $('fieldset#work-address-fields').toggle(checked)
+  if checked
+    $('fieldset#work-address-fields input[required]:visible').prop('required', 'required');
+  else
+    $('fieldset#work-address-fields :input[required]').prop('required',null);
