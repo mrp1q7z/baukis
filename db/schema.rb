@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912233234) do
+ActiveRecord::Schema.define(version: 20150912234301) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "customer_id",                null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150912233234) do
 
   add_index "addresses", ["city"], name: "index_addresses_on_city"
   add_index "addresses", ["customer_id"], name: "index_addresses_on_customer_id"
+  add_index "addresses", ["postal_code"], name: "index_addresses_on_postal_code"
   add_index "addresses", ["prefecture", "city"], name: "index_addresses_on_prefecture_and_city"
   add_index "addresses", ["type", "city"], name: "index_addresses_on_type_and_city"
   add_index "addresses", ["type", "customer_id"], name: "index_addresses_on_type_and_customer_id", unique: true
