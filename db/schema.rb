@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910195255) do
+ActiveRecord::Schema.define(version: 20150912233234) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "customer_id",                null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20150910195255) do
   add_index "customers", ["birth_year", "given_name_kana"], name: "index_customers_on_birth_year_and_given_name_kana"
   add_index "customers", ["email_for_index"], name: "index_customers_on_email_for_index", unique: true
   add_index "customers", ["family_name_kana", "given_name_kana"], name: "index_customers_on_family_name_kana_and_given_name_kana"
+  add_index "customers", ["gender", "family_name_kana", "given_name_kana"], name: "index_customers_on_gender_and_furigana"
   add_index "customers", ["given_name_kana"], name: "index_customers_on_given_name_kana"
 
   create_table "phones", force: :cascade do |t|

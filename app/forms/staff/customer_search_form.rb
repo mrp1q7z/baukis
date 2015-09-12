@@ -4,7 +4,8 @@ class Staff::CustomerSearchForm
 
   attr_accessor :family_name_kana, :given_name_kana,
       :birth_year, :birth_month, :birth_mday,
-      :address_type, :prefecture, :city, :phone_number
+      :address_type, :prefecture, :city, :phone_number,
+      :gender
 
   def search
     normalize_values
@@ -19,6 +20,7 @@ class Staff::CustomerSearchForm
     rel = rel.where(birth_year: birth_year) if birth_year.present?
     rel = rel.where(birth_month: birth_month) if birth_month.present?
     rel = rel.where(birth_mday: birth_mday) if birth_mday.present?
+    rel = rel.where(gender: gender) if gender.present?
 
     if prefecture.present? || city.present?
       case address_type
