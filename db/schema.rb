@@ -11,24 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912234301) do
+ActiveRecord::Schema.define(version: 20150913035847) do
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "customer_id",                null: false
-    t.string   "type",                       null: false
-    t.string   "postal_code",                null: false
-    t.string   "prefecture",                 null: false
-    t.string   "city",                       null: false
-    t.string   "address1",                   null: false
-    t.string   "address2",                   null: false
-    t.string   "company_name",  default: "", null: false
-    t.string   "division_name", default: "", null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "customer_id",                   null: false
+    t.string   "type",                          null: false
+    t.string   "postal_code",                   null: false
+    t.string   "prefecture",                    null: false
+    t.string   "city",                          null: false
+    t.string   "address1",                      null: false
+    t.string   "address2",                      null: false
+    t.string   "company_name",     default: "", null: false
+    t.string   "division_name",    default: "", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "last_four_digits"
   end
 
   add_index "addresses", ["city"], name: "index_addresses_on_city"
   add_index "addresses", ["customer_id"], name: "index_addresses_on_customer_id"
+  add_index "addresses", ["last_four_digits"], name: "index_addresses_on_last_four_digits"
   add_index "addresses", ["postal_code"], name: "index_addresses_on_postal_code"
   add_index "addresses", ["prefecture", "city"], name: "index_addresses_on_prefecture_and_city"
   add_index "addresses", ["type", "city"], name: "index_addresses_on_type_and_city"
@@ -84,10 +86,12 @@ ActiveRecord::Schema.define(version: 20150912234301) do
     t.boolean  "primary",          default: false, null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+    t.string   "last_four_digits"
   end
 
   add_index "phones", ["address_id"], name: "index_phones_on_address_id"
   add_index "phones", ["customer_id"], name: "index_phones_on_customer_id"
+  add_index "phones", ["last_four_digits"], name: "index_phones_on_last_four_digits"
   add_index "phones", ["number_for_index"], name: "index_phones_on_number_for_index"
 
   create_table "staff_events", force: :cascade do |t|
